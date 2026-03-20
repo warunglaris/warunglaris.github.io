@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Kasir - Aplikasi Kasir Sederhana untuk Warung Tradisional</title>
+    <meta name="description" content="Aplikasi kasir sederhana untuk warung tradisional Indonesia. Kelola stok, transaksi, dan riwayat penjualan dengan mudah.">
+    <meta name="keywords" content="kasir, warung, aplikasi kasir, POS Indonesia, kasir gratis">
+    <link rel="canonical" href="https://warunglaris.com/">
+    <meta property="og:title" content="Warung Kasir - Aplikasi Kasir Sederhana">
+    <meta property="og:description" content="Kelola warung dengan mudah menggunakan aplikasi kasir sederhana. Gratis dan mudah digunakan.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://warunglaris.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #16a34a;
+            --primary-dark: #15803d;
+            --primary-light: #22c55e;
+            --secondary: #f59e0b;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-download {
+            background: var(--primary);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-download:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--dark);
+            border: 2px solid var(--light);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Features */
+        .features {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--light);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* How it works */
+        .how-it-works {
+            padding: 5rem 0;
+            background: var(--light);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .step p {
+            color: var(--gray);
+        }
+
+        /* Referral */
+        .referral {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--secondary) 0%, #fbbf24 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .referral h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .referral p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .referral-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .referral h2 {
+                font-size: 1.8rem;
+            }
+
+            .referral-amount {
+                font-size: 2rem;
+            }
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/" class="logo">
+                    <div class="logo-icon">🏪</div>
+                    Warung Kasir
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#fitur">Fitur</a></li>
+                    <li><a href="#cara-pakai">Cara Pakai</a></li>
+                    <li><a href="#referral">Referral</a></li>
+                    <li><a href="/privacy-policy.html">Kebijakan Privasi</a></li>
+                    <li><a href="#download" class="btn-download">Download</a></li>
+                </ul>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Kasir Sederhana untuk <span>Warung Tradisional</span></h1>
+            <p>Kelola stok barang, catat transaksi, dan pantau riwayat penjualan dengan mudah. Gratis dan mudah digunakan!</p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">📥 Download APK</a>
+                <a href="#fitur" class="btn btn-secondary">Lihat Fitur</a>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Gratis</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">Offline</div>
+                    <div class="stat-label">Tanpa Internet</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">Mudah</div>
+                    <div class="stat-label">Digunakan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="fitur">
+        <div class="container">
+            <div class="section-title">
+                <h2>Semua Fitur yang Anda Butuhkan</h2>
+                <p>Aplikasi lengkap untuk mengelola warung Anda dengan efisien</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Transaksi Cepat</h3>
+                    <p>Catat penjualan dengan keranjang belanja. Hitung kembalian otomatis. Transaksi lebih cepat!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Kelola Stok Barang</h3>
+                    <p>Tambah, edit, hapus barang. Pantau stok yang menipis. Notifikasi stok habis otomatis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Riwayat Transaksi</h3>
+                    <p>Lihat semua transaksi hari ini. Pantau pendapatan harian dengan mudah.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>PIN Keamanan</h3>
+                    <p>Login aman dengan 6 digit PIN. Data warung Anda terlindungi dengan baik.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3>Program Referral</h3>
+                    <p>Dapat reward Rp 5.000 setiap ajak warung lain. 5 reward per hari, maksimal Rp 150.000/bulan!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Deteksi Lokasi</h3>
+                    <p>Deteksi lokasi warung saat daftar (opsional). Bantu kami tahu distribusi pengguna.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works" id="cara-pakai">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mulai dalam 3 Langkah</h2>
+                <p>Daftar dan gunakan dalam hitungan menit</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Download & Install</h3>
+                    <p>Download APK dan install di HP Android Anda. Tidak butuh izin rumit.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Daftar Akun</h3>
+                    <p>Isi nama warung dan nomor HP. Buat 6 digit PIN keamanan. Selesai!</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Mulai Jualan</h3>
+                    <p>Tambah barang ke stok dan mulai catat transaksi pertama Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral -->
+    <section class="referral" id="referral">
+        <div class="container">
+            <h2>🎉 Ajak Teman, Dapat Reward!</h2>
+            <div class="referral-amount">Rp 5.000</div>
+            <p>Setiap warung baru yang Anda ajak dan valid</p>
+            <p style="font-size: 1rem; opacity: 0.9;">
+                Maksimal 5 reward per hari • Reward masuk maksimal 1x24 jam<br>
+                Syarat: Warung aktif dalam 7 hari (minimal 1 aktivitas atau 3 data barang)
+            </p>
+        </div>
+    </section>
+
+    <!-- Download -->
+    <section class="features" id="download" style="text-align: center;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Download Sekarang</h2>
+                <p>Gratis selamanya. Tanpa biaya tersembunyi.</p>
+            </div>
+            <a href="https://github.com/warunglaris/warung_kasir/releases/latest/download/app-release.apk" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">
+                📥 Download APK (Latest)
+            </a>
+            <p style="margin-top: 1rem; color: var(--gray);">Versi 1.0.0 • Ukuran ~15 MB • Android 5.0+</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Warung Kasir</h4>
+                    <p style="color: #94a3b8;">Aplikasi kasir sederhana untuk warung tradisional Indonesia. Gratis dan mudah digunakan.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="#fitur">Fitur</a></li>
+                        <li><a href="#cara-pakai">Cara Pakai</a></li>
+                        <li><a href="#referral">Referral</a></li>
+                        <li><a href="#download">Download</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy-policy.html">Kebijakan Privasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Hubungi Kami</h4>
+                    <ul>
+                        <li><a href="mailto:contact@warunglaris.com">Email Support</a></li>
+                        <li><a href="https://github.com/warunglaris/warung_kasir/issues">Report</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Warung Kasir. Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            if (nav.style.display === 'flex') {
+                nav.style.position = 'absolute';
+                nav.style.top = '100%';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.background = 'white';
+                nav.style.flexDirection = 'column';
+                nav.style.padding = '1rem';
+                nav.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
