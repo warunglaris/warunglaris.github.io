@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cara Hapus Akun - Warung Kasir</title>
+    <meta name="description" content="Panduan cara menghapus akun dan data di aplikasi Warung Kasir">
+    <link rel="canonical" href="https://warunglaris.com/delete-account.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #16a34a;
+            --primary-dark: #15803d;
+            --danger: #ef4444;
+            --danger-dark: #dc2626;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        /* Content */
+        .content {
+            padding: 3rem 0 5rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .last-updated {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #334155;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: #334155;
+        }
+
+        .warning-box {
+            background: #fef2f2;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--danger);
+        }
+
+        .warning-box strong {
+            color: var(--danger-dark);
+        }
+
+        .info-box {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .info-box strong {
+            color: var(--dark);
+        }
+
+        .success-box {
+            background: #dcfce7;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Steps */
+        .steps {
+            counter-reset: step;
+        }
+
+        .step-item {
+            position: relative;
+            padding-left: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-item::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* Print styles */
+        @media print {
+            header, footer {
+                display: none;
+            }
+            .content {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            .step-item {
+                padding-left: 3rem;
+            }
+
+            .step-item::before {
+                width: 2.2rem;
+                height: 2.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/" class="logo">
+                    <span>🏪</span> Warung Kasir
+                </a>
+                <a href="/" class="back-link">← Kembali ke Beranda</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container content">
+        <h1>Cara Hapus Akun</h1>
+        <p class="last-updated">Terakhir diperbarui: 21 Maret 2026</p>
+
+        <div class="warning-box">
+            <p><strong>⚠️ Peringatan Penting:</strong> Menghapus akun akan menghapus SEMUA data Anda secara permanen. Tindakan ini TIDAK dapat dibatalkan. Pastikan Anda telah membackup data penting sebelum melanjutkan.</p>
+        </div>
+
+        <h2>Apa yang Terjadi Saat Akun Dihapus?</h2>
+        <p>Saat Anda menghapus akun, hal berikut akan terjadi:</p>
+        <ul>
+            <li><strong>Semua data barang</strong> akan dihapus permanen</li>
+            <li><strong>Riwayat transaksi</strong> akan dihapus permanen</li>
+            <li><strong>Data reward referral</strong> akan dihapus permanen</li>
+            <li><strong>Profil warung</strong> akan dihapus permanen</li>
+            <li><strong>Nomor HP</strong> dapat digunakan kembali untuk pendaftaran akun baru</li>
+        </ul>
+
+        <div class="info-box">
+            <p><strong>Penyimpanan Lokal:</strong> Karena semua data disimpan secara lokal di perangkat Anda, menghapus akun akan menghapus data dari database lokal HP Anda. Data tidak dikirim ke server manapun.</p>
+        </div>
+
+        <h2>Cara Menghapus Akun</h2>
+
+        <h3>Metode 1: Hapus Melalui Aplikasi</h3>
+        <div class="steps">
+            <div class="step-item">
+                <p>Buka aplikasi <strong>Warung Kasir</strong> di HP Anda</p>
+            </div>
+            <div class="step-item">
+                <p>Login dengan PIN Anda jika belum login</p>
+            </div>
+            <div class="step-item">
+                <p>Menuju ke menu <strong>"Akun"</strong> atau <strong>"Profil"</strong></p>
+            </div>
+            <div class="step-item">
+                <p>Scroll ke bawah dan cari opsi <strong>"Hapus Data"</strong> atau <strong>"Hapus Akun"</strong></p>
+            </div>
+            <div class="step-item">
+                <p>Konfirmasi dengan memasukkan PIN Anda</p>
+            </div>
+            <div class="step-item">
+                <p>Ikuti instruksi untuk menyelesaikan penghapusan</p>
+            </div>
+        </div>
+
+        <h3>Metode 2: Uninstall Aplikasi</h3>
+        <div class="steps">
+            <div class="step-item">
+                <p>Buka <strong>Pengaturan</strong> di HP Android Anda</p>
+            </div>
+            <div class="step-item">
+                <p>Cari dan pilih <strong>"Aplikasi"</strong> atau <strong>"Kelola Aplikasi"</strong></p>
+            </div>
+            <div class="step-item">
+                <p>Cari dan ketuk <strong>"Warung Kasir"</strong></p>
+            </div>
+            <div class="step-item">
+                <p>Ketuk <strong>"Uninstall"</strong> atau <strong>"Hapus Aplikasi"</strong></p>
+            </div>
+            <div class="step-item">
+                <p>Konfirmasi penghapusan aplikasi</p>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <p><strong>Catatan:</strong> Meng-uninstall aplikasi akan menghapus SEMUA data termasuk akun Anda. Tidak ada data yang akan tersisa di perangkat.</p>
+        </div>
+
+        <h2>Sebelum Menghapus Akun</h2>
+        <p>Sebelum menghapus akun, kami sarankan Anda:</p>
+        <ul>
+            <li><strong>Catat data barang penting</strong> - Simpan daftar barang beserta harga di tempat lain</li>
+            <li><strong>Cek riwayat transaksi</strong> - Review dan simpan data penjualan yang penting</li>
+            <li><strong>Tukar reward</strong> - Jika Anda memiliki reward referral yang belum ditukar, tukar terlebih dahulu</li>
+            <li><strong>Pindahkan data</strong> - Jika akan menggunakan akun baru di HP lain, pertimbangkan untuk memindahkan data terlebih dahulu</li>
+        </ul>
+
+        <h2>Setelah Menghapus Akun</h2>
+
+        <h3>Mendaftar Akun Baru</h3>
+        <p>Setelah menghapus akun, Anda dapat mendaftar akun baru dengan:</p>
+        <ul>
+            <li><strong>Nomor HP yang sama</strong> - Nomor HP yang digunakan akun lama dapat digunakan kembali</li>
+            <li><strong>Nama warung yang berbeda atau sama</strong> - Bebas memilih nama warung baru</li>
+            <li><strong>PIN baru</strong> - Membuat PIN keamanan yang baru</li>
+        </ul>
+
+        <div class="success-box">
+            <p><strong>Informasi:</strong> Akun baru tidak akan memiliki data dari akun lama. Anda perlu memasukkan data barang dari awal.</p>
+        </div>
+
+        <h2>Pertanyaan Umum (FAQ)</h2>
+
+        <h3>Apakah data saya bisa dikembalikan setelah dihapus?</h3>
+        <p><strong>Tidak.</strong> Setelah akun dihapus, semua data akan hilang permanen dan tidak dapat dikembalikan. Pastikan untuk membackup data penting sebelum menghapus akun.</p>
+
+        <h3>Apakah nomor HP saya terblokir setelah menghapus akun?</h3>
+        <p><strong>Tidak.</strong> Nomor HP Anda dapat digunakan kembali untuk mendaftar akun baru kapan saja.</p>
+
+        <h3>Apakah reward referral saya hilang jika akun dihapus?</h3>
+        <p><strong>Ya.</strong> Semua reward referral yang belum ditukar akan hilang saat akun dihapus. Kami sarankan untuk menukar semua reward sebelum menghapus akun.</p>
+
+        <h3>Bagaimana jika saya ingin menggunakan Warung Kasir lagi?</h3>
+        <p>Anda dapat download ulang APK dari website kami dan mendaftar akun baru. Akun baru akan bersih tanpa data dari akun sebelumnya.</p>
+
+        <h3>Apakah data saya masih ada di server setelah akun dihapus?</h3>
+        <p><strong>Tidak.</strong> Warung Kasir menyimpan semua data secara lokal di perangkat Anda. Tidak ada data yang disimpan di server, jadi saat akun dihapus, semua data benar-benar hilang.</p>
+
+        <h2>Bantuan Tambahan</h2>
+        <p>Jika Anda mengalami kendala dalam menghapus akun atau memiliki pertanyaan lain, hubungi kami:</p>
+
+        <div class="info-box">
+            <p><strong>Email:</strong> contact@warunglaris.com</p>
+            <p><strong>Report Masalah:</strong> <a href="https://github.com/warunglaris/warung_kasir/issues" style="color: var(--primary);">https://github.com/warunglaris/warung_kasir/issues</a></p>
+        </div>
+
+        <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--light);">
+
+        <p style="text-align: center; color: var(--gray); font-size: 0.9rem;">
+            Versi Dokumen: 1.0<br>
+            Terakhir diperbarui: 21 Maret 2026
+        </p>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Warung Kasir. Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
+            <p style="margin-top: 1rem;">
+                <a href="/">Beranda</a> •
+                <a href="/privacy-policy.html">Kebijakan Privasi</a> •
+                <a href="mailto:contact@warunglaris.com">Hubungi Kami</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
