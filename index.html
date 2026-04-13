@@ -296,32 +296,6 @@
             color: var(--gray);
         }
 
-        /* Referral */
-        .referral {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, var(--secondary) 0%, #fbbf24 100%);
-            text-align: center;
-            color: white;
-        }
-
-        .referral h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .referral p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .referral-amount {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
         /* Footer */
         footer {
             background: var(--dark);
@@ -396,14 +370,6 @@
             .section-title h2 {
                 font-size: 2rem;
             }
-
-            .referral h2 {
-                font-size: 1.8rem;
-            }
-
-            .referral-amount {
-                font-size: 2rem;
-            }
         }
 
         /* Stats */
@@ -429,6 +395,50 @@
             color: var(--gray);
             font-size: 0.9rem;
         }
+
+        /* Google Play Button */
+        .google-play-btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            min-width: 200px;
+            height: 70px;
+        }
+
+        .google-play-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(22, 163, 74, 0.3);
+            background: var(--primary-dark);
+        }
+
+        .google-play-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .google-play-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+
+        .google-play-text span:first-child {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .google-play-text span:last-child {
+            font-size: 20px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -443,7 +453,6 @@
                 <ul class="nav-links">
                     <li><a href="#fitur">Fitur</a></li>
                     <li><a href="#cara-pakai">Cara Pakai</a></li>
-                    <li><a href="#referral">Referral</a></li>
                     <li><a href="/privacy-policy.html">Kebijakan Privasi</a></li>
                     <li><a href="#download" class="btn-download">Download</a></li>
                 </ul>
@@ -458,7 +467,15 @@
             <h1>Kasir Sederhana untuk <span>Warung Tradisional</span></h1>
             <p>Kelola stok barang, catat transaksi, dan pantau riwayat penjualan dengan mudah. Gratis dan mudah digunakan!</p>
             <div class="hero-buttons">
-                <a href="#download" class="btn btn-primary">📥 Download APK</a>
+                <a href="https://play.google.com/store/apps/details?id=com.tiscanner.warung_kasir&pcampaignid=web_share" class="google-play-btn">
+                    <svg class="google-play-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                    </svg>
+                    <div class="google-play-text">
+                        <span>GET IT ON</span>
+                        <span>Google Play</span>
+                    </div>
+                </a>
                 <a href="#fitur" class="btn btn-secondary">Lihat Fitur</a>
             </div>
             <div class="stats">
@@ -507,11 +524,6 @@
                     <p>Login aman dengan 6 digit PIN. Data warung Anda terlindungi dengan baik.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎁</div>
-                    <h3>Program Referral</h3>
-                    <p>Dapat reward Rp 5.000 setiap ajak warung lain. 5 reward per hari, maksimal Rp 150.000/bulan!</p>
-                </div>
-                <div class="feature-card">
                     <div class="feature-icon">📍</div>
                     <h3>Deteksi Lokasi</h3>
                     <p>Deteksi lokasi warung saat daftar (opsional). Bantu kami tahu distribusi pengguna.</p>
@@ -531,7 +543,7 @@
                 <div class="step">
                     <div class="step-number">1</div>
                     <h3>Download & Install</h3>
-                    <p>Download APK dan install di HP Android Anda. Tidak butuh izin rumit.</p>
+                    <p>Download aplikasi dan install di HP Android Anda.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
@@ -547,19 +559,6 @@
         </div>
     </section>
 
-    <!-- Referral -->
-    <section class="referral" id="referral">
-        <div class="container">
-            <h2>🎉 Ajak Teman, Dapat Reward!</h2>
-            <div class="referral-amount">Rp 5.000</div>
-            <p>Setiap warung baru yang Anda ajak dan valid</p>
-            <p style="font-size: 1rem; opacity: 0.9;">
-                Maksimal 5 reward per hari • Reward masuk maksimal 1x24 jam<br>
-                Syarat: Warung aktif dalam 7 hari (minimal 1 aktivitas atau 3 data barang)
-            </p>
-        </div>
-    </section>
-
     <!-- Download -->
     <section class="features" id="download" style="text-align: center;">
         <div class="container">
@@ -567,10 +566,15 @@
                 <h2>Download Sekarang</h2>
                 <p>Gratis selamanya. Tanpa biaya tersembunyi.</p>
             </div>
-            <a href="https://warunglaris.com/releases/latest/download/app-release.apk" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">
-                📥 Download APK (Latest)
+            <a href="https://play.google.com/store/apps/details?id=com.tiscanner.warung_kasir&pcampaignid=web_share" class="google-play-btn">
+                <svg class="google-play-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                </svg>
+                <div class="google-play-text">
+                    <span>GET IT ON</span>
+                    <span>Google Play</span>
+                </div>
             </a>
-            <p style="margin-top: 1rem; color: var(--gray);">Versi 1.0.0 • Ukuran ~15 MB • Android 5.0+</p>
         </div>
     </section>
 
@@ -587,7 +591,6 @@
                     <ul>
                         <li><a href="#fitur">Fitur</a></li>
                         <li><a href="#cara-pakai">Cara Pakai</a></li>
-                        <li><a href="#referral">Referral</a></li>
                         <li><a href="#download">Download</a></li>
                     </ul>
                 </div>
